@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ali Darwish | Senior Frontend Engineer & 3D Web Architect</title>
+  <meta name="description" content="Portfolio of Ali Darwish - Frontend Engineer specializing in Angular, React, Next.js, Three.js, and High-Performance Web Architectures with 3+ years of enterprise experience.">
+  <meta name="keywords" content="Ali Darwish, Frontend Engineer, Angular, React, Next.js, Three.js, WebGL, Web Developer, Tawakkalna, Obeikan, ITI">
+  <meta name="author" content="Ali Darwish">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ali Darwish | Frontend Engineer (Angular / React / Three.js)">
+  <meta property="og:description" content="Crafting scalable, high-performance web applications and immersive 3D digital experiences.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- External Libraries CDN (Three.js, GSAP, Lucide Icons, Canvas Confetti) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="bg-dark text-light">
+
+  <!-- Custom Glow Cursor -->
+  <div id="custom-cursor" class="custom-cursor"></div>
+  <div id="cursor-follower" class="cursor-follower"></div>
+
+  <!-- Noise Overlay for Cinematic Texture -->
+  <div class="noise-overlay"></div>
+
+  <!-- Ambient Glow Orbs -->
+  <div class="ambient-glow orb-1"></div>
+  <div class="ambient-glow orb-2"></div>
+  <div class="ambient-glow orb-3"></div>
+
+  <!-- Header / Navigation -->
+  <header id="main-header" class="site-header">
+    <nav class="nav-container">
+      <a href="#hero" class="brand-logo" id="logo-link">
+        <span class="logo-bracket">&lt;</span>
+        <span class="logo-name">Ali</span>
+        <span class="logo-accent">.Darwish</span>
+        <span class="logo-slash">/&gt;</span>
+        <span class="pulse-dot"></span>
+      </a>
+
+      <div class="nav-menu" id="nav-menu">
+        <a href="#about" class="nav-link" data-sound="hover"><i data-lucide="user"></i> About</a>
+        <a href="#experience" class="nav-link" data-sound="hover"><i data-lucide="briefcase"></i> Experience</a>
+        <a href="#projects" class="nav-link" data-sound="hover"><i data-lucide="layers"></i> Projects</a>
+        <a href="#lab" class="nav-link" data-sound="hover"><i data-lucide="cpu"></i> Interactive Lab <span class="badge-new">LIVE</span></a>
+        <a href="#skills" class="nav-link" data-sound="hover"><i data-lucide="code-2"></i> Skills</a>
+        <a href="#contact" class="nav-link" data-sound="hover"><i data-lucide="send"></i> Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Audio Synthesizer Toggle -->
+        <button id="sound-toggle" class="btn-icon" title="Toggle Futuristic Audio" aria-label="Toggle Audio Effects">
+          <i data-lucide="volume-2" id="sound-icon-on"></i>
+          <i data-lucide="volume-x" id="sound-icon-off" class="hidden"></i>
+          <span class="sound-wave"></span>
+        </button>
+
+        <!-- Quick Resume Modal Button -->
+        <button id="open-cv-btn" class="btn-outline-glow" data-sound="click">
+          <i data-lucide="file-text"></i>
+          <span>View CV</span>
+        </button>
+
+        <!-- Hire Me Action -->
+        <a href="#contact" class="btn-primary-glow" data-sound="click">
+          <span>Let's Build</span>
+          <i data-lucide="arrow-up-right"></i>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-toggle" class="mobile-menu-btn" aria-label="Open Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main id="main-content">
+
+    <!-- HERO SECTION with Three.js WebGL Interactive Core -->
+    <section id="hero" class="hero-section">
+      <!-- 3D Three.js Background Canvas -->
+      <canvas id="hero-canvas" class="hero-webgl-canvas"></canvas>
+
+      <div class="hero-container">
+        <div class="hero-badge-wrapper animate-fade-in">
+          <div class="status-pill">
+            <span class="status-indicator"></span>
+            <span class="status-text">Available for High-Impact Roles & Visionary Projects</span>
+          </div>
+          <div class="tech-stack-pill">
+            <span class="tech-tag">Angular</span>
+            <span class="tech-dot">•</span>
+            <span class="tech-tag">React</span>
+            <span class="tech-dot">•</span>
+            <span class="tech-tag">Next.js</span>
+            <span class="tech-dot">•</span>
+            <span class="tech-tag">Three.js</span>
+          </div>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="hero-greeting">Hi, I'm <span class="highlight-gradient">Ali Darwish</span></span>
+          <span class="hero-role-block">
+            Architecting <span class="typing-text" id="dynamic-headline">Scalable Frontend Systems</span>
+          </span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Senior/Mid-Level Frontend Engineer with <strong>3+ years</strong> of enterprise experience. Transforming complex business logic into lightning-fast, pixel-perfect, and immersive 3D/2D web applications. Known for delivering impactful modules for <strong>Tawakkalna</strong>, <strong>Madar</strong>, and high-scale enterprise architectures.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="hero-actions">
+          <a href="#projects" class="btn-cta-primary" data-sound="click">
+            <i data-lucide="sparkles"></i>
+            <span>Explore Engineering Work</span>
+          </a>
+          <a href="#lab" class="btn-cta-secondary" data-sound="click">
+            <i data-lucide="terminal"></i>
+            <span>Launch Interactive Lab</span>
+          </a>
+          <a href="https://github.com/alielzoghby" target="_blank" rel="noopener noreferrer" class="btn-social-hero" title="GitHub Profile">
+            <i data-lucide="github"></i>
+          </a>
+          <a href="https://linkedin.com/in/ali-sahmed" target="_blank" rel="noopener noreferrer" class="btn-social-hero" title="LinkedIn Profile">
+            <i data-lucide="linkedin"></i>
+          </a>
+        </div>
+
+        <!-- Live Impact Metrics HUD Bar -->
+        <div class="metrics-hud-card">
+          <div class="hud-item">
+            <div class="hud-number" data-target="3">0</div>
+            <span class="hud-symbol">+</span>
+            <div class="hud-label">Years Enterprise Exp</div>
+          </div>
+          <div class="hud-divider"></div>
+          <div class="hud-item">
+            <div class="hud-number" data-target="40">0</div>
+            <span class="hud-symbol">%</span>
+            <div class="hud-label">Initial Load Speedup</div>
+          </div>
+          <div class="hud-divider"></div>
+          <div class="hud-item">
+            <div class="hud-number" data-target="30">0</div>
+            <span class="hud-symbol">%</span>
+            <div class="hud-label">Bundle Size Reduced</div>
+          </div>
+          <div class="hud-divider"></div>
+          <div class="hud-item">
+            <div class="hud-number" data-target="35">0</div>
+            <span class="hud-symbol">%</span>
+            <div class="hud-label">Code Duplication Cut</div>
+          </div>
+        </div>
+
+        <!-- 3D Interactive Helper Prompt -->
+        <div class="hero-scroll-prompt">
+          <span class="mouse-icon">
+            <span class="mouse-wheel"></span>
+          </span>
+          <span>Scroll to explore &bull; Drag 3D scene to rotate</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE IMPACT & STATS MARQUEE -->
+    <div class="tech-marquee-wrapper">
+      <div class="marquee-track">
+        <span class="marquee-item"><i data-lucide="check-circle-2"></i> CLEAN ARCHITECTURE</span>
+        <span class="marquee-item"><i data-lucide="zap"></i> HIGH-PERFORMANCE WEB APPS</span>
+        <span class="marquee-item"><i data-lucide="box"></i> 3D WEBGL & THREE.JS</span>
+        <span class="marquee-item"><i data-lucide="shield-check"></i> WCAG ACCESSIBILITY (AAA)</span>
+        <span class="marquee-item"><i data-lucide="git-branch"></i> REACT & ANGULAR SPECIALIST</span>
+        <span class="marquee-item"><i data-lucide="cpu"></i> RXJS & STATE STREAMS</span>
+        <span class="marquee-item"><i data-lucide="code"></i> TYPESCRIPT RIGOR</span>
+        <span class="marquee-item"><i data-lucide="check-circle-2"></i> CLEAN ARCHITECTURE</span>
+        <span class="marquee-item"><i data-lucide="zap"></i> HIGH-PERFORMANCE WEB APPS</span>
+        <span class="marquee-item"><i data-lucide="box"></i> 3D WEBGL & THREE.JS</span>
+      </div>
+    </div>
+
+    <!-- ABOUT SECTION with Glassmorphic Story & Architecture Principles -->
+    <section id="about" class="section-padding">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-tag">
+            <i data-lucide="user-check"></i>
+            <span>Engineering Profile</span>
+          </div>
+          <h2 class="section-title">Bridging Complex Systems & <span class="text-gradient">Flawless Interfaces</span></h2>
+          <p class="section-description">
+            Passionate about clean architecture, reactive programming, and modern tooling. I build frontend ecosystems that empower business growth and captivate users.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Bio & Core Strengths Card -->
+          <div class="glass-card about-main-card">
+            <div class="card-glow-header">
+              <div class="avatar-box">
+                <div class="avatar-ring"></div>
+                <div class="avatar-initials">AD</div>
+              </div>
+              <div>
+                <h3 class="author-name">Ali Darwish</h3>
+                <p class="author-title">Senior Frontend Engineer (Angular / React)</p>
+                <p class="author-loc"><i data-lucide="map-pin"></i> Cairo, Egypt &bull; Open for Global / Remote / Relocation</p>
+              </div>
+            </div>
+
+            <div class="about-text-content">
+              <p>
+                With over <strong>3+ years of professional engineering experience</strong> (including hands-on production deployments across React, Next.js, and Angular ecosystems), I specialize in designing scalable web architectures from concept to continuous deployment.
+              </p>
+              <p>
+                At <strong>Obeikan Digital Solutions</strong>, I contributed to key React modules for the renowned <strong>Tawakkalna platform</strong> delivered through the <strong>Madar logistics system</strong>. I spearheaded architectural separation into dedicated B2B and B2C portals, cutting feature coupling by <strong>40%</strong>, and led Angular enterprise upgrades that improved security and application performance by <strong>25%</strong>.
+              </p>
+            </div>
+
+            <div class="key-traits-grid">
+              <div class="trait-item">
+                <div class="trait-icon"><i data-lucide="layout"></i></div>
+                <div class="trait-info">
+                  <h4>Component Architecture</h4>
+                  <p>Atomic, reusable, modular design patterns with SOLID compliance.</p>
+                </div>
+              </div>
+              <div class="trait-item">
+                <div class="trait-icon"><i data-lucide="gauge"></i></div>
+                <div class="trait-info">
+                  <h4>Performance Tuning</h4>
+                  <p>Tree-shaking, lazy loading, Webpack/Vite optimization, and Core Web Vitals.</p>
+                </div>
+              </div>
+              <div class="trait-item">
+                <div class="trait-icon"><i data-lucide="refresh-cw"></i></div>
+                <div class="trait-info">
+                  <h4>Reactive State (RxJS/NgRx/Redux)</h4>
+                  <p>Declarative asynchronous data streams and predictable store state flows.</p>
+                </div>
+              </div>
+              <div class="trait-item">
+                <div class="trait-icon"><i data-lucide="box"></i></div>
+                <div class="trait-info">
+                  <h4>3D & Micro-Interactions</h4>
+                  <p>Three.js shaders, WebGL particle systems, and GSAP silky-smooth motion.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer-actions">
+              <a href="#contact" class="btn-primary-sm" data-sound="click">
+                <i data-lucide="mail"></i> Discuss a Project
+              </a>
+              <button class="btn-secondary-sm" id="about-cv-download-btn" data-sound="click">
+                <i data-lucide="download"></i> Download Resume (PDF)
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Technical Highlights Sidebar -->
+          <div class="about-sidebar">
+            <div class="glass-card feature-stat-card">
+              <div class="card-icon-circle accent-cyan">
+                <i data-lucide="check-check"></i>
+              </div>
+              <h4>Production Tested</h4>
+              <p>Delivered enterprise portals handling thousands of daily transactions in logistics and education.</p>
+              <div class="badge-list">
+                <span class="badge-chip">Tawakkalna Module</span>
+                <span class="badge-chip">Madar Logistics</span>
+                <span class="badge-chip">RDIA Saudi Arabia</span>
+              </div>
+            </div>
+
+            <div class="glass-card feature-stat-card">
+              <div class="card-icon-circle accent-purple">
+                <i data-lucide="award"></i>
+              </div>
+              <h4>Elite Education & Credentials</h4>
+              <p>Graduate of the intensive <strong>9-Month Professional Diploma (OSAD Track)</strong> at <strong>Information Technology Institute (ITI)</strong> and <strong>CS50 Harvard</strong>.</p>
+              <div class="badge-list">
+                <span class="badge-chip">ITI Graduate</span>
+                <span class="badge-chip">CS50 Harvard</span>
+                <span class="badge-chip">Eng. Degree</span>
+              </div>
+            </div>
+
+            <div class="glass-card feature-stat-card">
+              <div class="card-icon-circle accent-emerald">
+                <i data-lucide="terminal"></i>
+              </div>
+              <h4>Full-Stack Fluent</h4>
+              <p>Seamless collaboration with backends via REST APIs, Node.js, Express, MongoDB, MySQL, and JWT Auth.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE INTERACTIVE FRONTEND LAB (PROVES FRONTEND MASTERY) -->
+    <section id="lab" class="section-padding lab-section">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <div class="section-tag center-tag">
+            <i data-lucide="cpu"></i>
+            <span>Proof of Engineering Mastery</span>
+          </div>
+          <h2 class="section-title">Interactive <span class="text-gradient">Frontend Lab</span></h2>
+          <p class="section-description mx-auto">
+            Don't just take my word for it. Test live interactive micro-engines below demonstrating real-time reactive streams, 3D physics, dynamic state machines, and performance metrics.
+          </p>
+        </div>
+
+        <div class="lab-workspace glass-card">
+          <!-- Lab Navigation Tabs -->
+          <div class="lab-tabs-bar">
+            <button class="lab-tab active" data-tab="rxjs-visualizer" data-sound="tab">
+              <i data-lucide="activity"></i>
+              <span>RxJS Reactive Stream</span>
+            </button>
+            <button class="lab-tab" data-tab="pos-state-machine" data-sound="tab">
+              <i data-lucide="shopping-bag"></i>
+              <span>POS State Machine</span>
+            </button>
+            <button class="lab-tab" data-tab="threejs-shader-lab" data-sound="tab">
+              <i data-lucide="box"></i>
+              <span>3D WebGL Shader Forge</span>
+            </button>
+            <button class="lab-tab" data-tab="benchmark-tester" data-sound="tab">
+              <i data-lucide="zap"></i>
+              <span>Bundle & FPS Benchmark</span>
+            </button>
+          </div>
+
+          <!-- Lab Content Panels -->
+          <div class="lab-content-viewport">
+            
+            <!-- PANEL 1: RxJS Reactive Stream Visualizer -->
+            <div class="lab-panel active" id="panel-rxjs-visualizer">
+              <div class="panel-header-desc">
+                <div>
+                  <h3 class="panel-heading"><i data-lucide="activity"></i> Real-Time RxJS Stream Visualizer</h3>
+                  <p class="panel-sub">Simulating real-time asynchronous operators: <code>debounceTime</code>, <code>switchMap</code>, <code>filter</code>, and <code>scan</code>.</p>
+                </div>
+                <div class="panel-badge">RxJS + Declarative State</div>
+              </div>
+
+              <div class="rxjs-playground-grid">
+                <div class="stream-controls">
+                  <label class="control-label">Emit Stream Events:</label>
+                  <div class="stream-buttons-row">
+                    <button id="emit-event-btn" class="btn-lab-action" data-sound="click">
+                      <i data-lucide="plus-circle"></i> Emit Random Payload
+                    </button>
+                    <button id="emit-batch-btn" class="btn-lab-action" data-sound="click">
+                      <i data-lucide="zap"></i> Emit Rapid Burst (5x)
+                    </button>
+                    <button id="clear-stream-btn" class="btn-lab-outline" data-sound="click">
+                      <i data-lucide="trash-2"></i> Clear Pipeline
+                    </button>
+                  </div>
+
+                  <div class="pipeline-filters">
+                    <label class="control-label">Active Operators in Pipe:</label>
+                    <div class="operator-switches">
+                      <label class="switch-box">
+                        <input type="checkbox" id="op-debounce" checked>
+                        <span class="switch-ui"></span>
+                        <span class="switch-label">debounceTime(300ms)</span>
+                      </label>
+                      <label class="switch-box">
+                        <input type="checkbox" id="op-filter" checked>
+                        <span class="switch-ui"></span>
+                        <span class="switch-label">filter(val &gt; 20)</span>
+                      </label>
+                      <label class="switch-box">
+                        <input type="checkbox" id="op-transform" checked>
+                        <span class="switch-ui"></span>
+                        <span class="switch-label">map(v =&gt; '$' + (v * 1.5))</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Stream Marble Visualization Canvas -->
+                <div class="stream-timeline-box">
+                  <div class="timeline-lane" id="raw-stream-lane">
+                    <span class="lane-title">Source Observable ($raw)</span>
+                    <div class="lane-marbles" id="raw-marbles-container"></div>
+                  </div>
+                  <div class="pipe-operator-connector">
+                    <div class="pipe-arrow"></div>
+                    <span class="pipe-label">.pipe( debounceTime, filter, map )</span>
+                  </div>
+                  <div class="timeline-lane" id="piped-stream-lane">
+                    <span class="lane-title">Subscribed Output ($transformed)</span>
+                    <div class="lane-marbles" id="piped-marbles-container"></div>
+                  </div>
+                  <div class="stream-log-console" id="stream-log">
+                    <span class="log-line text-muted">[Stream Ready] Emitting events will demonstrate reactive data pipelining.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PANEL 2: POS State Machine & Interactive Inventory -->
+            <div class="lab-panel" id="panel-pos-state-machine">
+              <div class="panel-header-desc">
+                <div>
+                  <h3 class="panel-heading"><i data-lucide="shopping-bag"></i> Reactive POS & Inventory State Engine</h3>
+                  <p class="panel-sub">Simulating Ali's POS Management System architecture with instant state calculations, inventory decrement, and transaction logs.</p>
+                </div>
+                <div class="panel-badge">Clean Architecture • State Reducer</div>
+              </div>
+
+              <div class="pos-demo-grid">
+                <!-- Inventory Items -->
+                <div class="pos-catalog">
+                  <h4 class="sub-heading"><i data-lucide="package"></i> Available Inventory (Real-time sync)</h4>
+                  <div class="pos-items-list" id="pos-items-list">
+                    <!-- Dynamic Items populated by JS -->
+                  </div>
+                </div>
+
+                <!-- Reactive Cart & Invoice Preview -->
+                <div class="pos-cart-panel">
+                  <h4 class="sub-heading"><i data-lucide="receipt"></i> Real-time Invoice & State Machine</h4>
+                  <div class="cart-items-box" id="pos-cart-box">
+                    <div class="empty-cart-msg">Cart is empty. Click items on the left to add.</div>
+                  </div>
+
+                  <div class="cart-summary-box">
+                    <div class="summary-row">
+                      <span>Subtotal:</span>
+                      <strong id="pos-subtotal">$0.00</strong>
+                    </div>
+                    <div class="summary-row">
+                      <span>Tax (14% VAT):</span>
+                      <strong id="pos-tax">$0.00</strong>
+                    </div>
+                    <div class="summary-row total-row">
+                      <span>Total Amount:</span>
+                      <strong id="pos-total">$0.00</strong>
+                    </div>
+                  </div>
+
+                  <div class="pos-actions-row">
+                    <button id="pos-checkout-btn" class="btn-lab-action w-full" disabled data-sound="click">
+                      <i data-lucide="credit-card"></i> Process Invoice & Decrement Stock
+                    </button>
+                    <button id="pos-reset-btn" class="btn-lab-outline" data-sound="click">
+                      <i data-lucide="rotate-ccw"></i> Reset
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PANEL 3: 3D WebGL Shader & Physics Lab -->
+            <div class="lab-panel" id="panel-threejs-shader-lab">
+              <div class="panel-header-desc">
+                <div>
+                  <h3 class="panel-heading"><i data-lucide="box"></i> 3D WebGL Shader & Geometry Laboratory</h3>
+                  <p class="panel-sub">Inspect and tweak real-time Three.js parameters: wireframe topologies, roughness, metalness, and lighting dynamics.</p>
+                </div>
+                <div class="panel-badge">Three.js • WebGL 60FPS</div>
+              </div>
+
+              <div class="shader-lab-grid">
+                <!-- 3D Mini Viewport -->
+                <div class="shader-canvas-wrapper">
+                  <canvas id="lab-three-canvas"></canvas>
+                  <div class="canvas-hud-info">
+                    <span id="geometry-name">Torus Knot</span> &bull; <span id="fps-counter">60 FPS</span>
+                  </div>
+                </div>
+
+                <!-- 3D Controls -->
+                <div class="shader-controls-box">
+                  <h4 class="sub-heading">Geometry Selection</h4>
+                  <div class="geo-btn-group">
+                    <button class="btn-geo active" data-geo="torusKnot">Torus Knot</button>
+                    <button class="btn-geo" data-geo="icosahedron">Icosahedron</button>
+                    <button class="btn-geo" data-geo="octahedron">Octahedron</button>
+                    <button class="btn-geo" data-geo="dodecahedron">Dodecahedron</button>
+                  </div>
+
+                  <h4 class="sub-heading mt-4">Shader & Material Parameters</h4>
+                  <div class="slider-control">
+                    <div class="slider-header">
+                      <span>Wireframe Mode:</span>
+                      <input type="checkbox" id="wireframe-toggle" checked>
+                    </div>
+                  </div>
+                  <div class="slider-control">
+                    <div class="slider-header">
+                      <span>Rotation Speed:</span>
+                      <span id="speed-val">1.0x</span>
+                    </div>
+                    <input type="range" id="speed-slider" min="0.1" max="3" step="0.1" value="1">
+                  </div>
+                  <div class="slider-control">
+                    <div class="slider-header">
+                      <span>Light Intensity:</span>
+                      <span id="light-val">2.5</span>
+                    </div>
+                    <input type="range" id="light-slider" min="0.5" max="5" step="0.1" value="2.5">
+                  </div>
+                  <div class="slider-control">
+                    <div class="slider-header">
+                      <span>Particle Swarm Density:</span>
+                      <span id="particle-val">1200</span>
+                    </div>
+                    <input type="range" id="particle-slider" min="200" max="3000" step="100" value="1200">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PANEL 4: Performance & Architecture Benchmark -->
+            <div class="lab-panel" id="panel-benchmark-tester">
+              <div class="panel-header-desc">
+                <div>
+                  <h3 class="panel-heading"><i data-lucide="zap"></i> Frontend Architecture & Performance Audit</h3>
+                  <p class="panel-sub">Comparing legacy bundle architectures vs. Ali's optimized component tree with lazy-loaded chunks and Tree-shaking.</p>
+                </div>
+                <div class="panel-badge">Audit Score: 100/100</div>
+              </div>
+
+              <div class="benchmark-grid">
+                <div class="glass-card bench-card">
+                  <div class="bench-badge negative">Before Optimization</div>
+                  <h4>Monolithic Frontend</h4>
+                  <ul class="bench-list">
+                    <li><i data-lucide="x-circle" class="text-red"></i> Bundle Size: <strong>4.8 MB</strong></li>
+                    <li><i data-lucide="x-circle" class="text-red"></i> Initial Load Time: <strong>3.4s</strong></li>
+                    <li><i data-lucide="x-circle" class="text-red"></i> Code Duplication: <strong>~42%</strong></li>
+                    <li><i data-lucide="x-circle" class="text-red"></i> Lighthouse Score: <strong>68</strong></li>
+                  </ul>
+                </div>
+
+                <div class="bench-arrow-center">
+                  <div class="bench-impact-badge">
+                    <span>Ali's Architectural Refactor</span>
+                    <i data-lucide="arrow-right"></i>
+                  </div>
+                </div>
+
+                <div class="glass-card bench-card highlight-glow">
+                  <div class="bench-badge positive">After Ali's Optimization</div>
+                  <h4>Modular Clean Architecture</h4>
+                  <ul class="bench-list">
+                    <li><i data-lucide="check-circle" class="text-green"></i> Bundle Size: <strong>1.4 MB (-70%)</strong></li>
+                    <li><i data-lucide="check-circle" class="text-green"></i> Initial Load Time: <strong>0.8s (4x faster)</strong></li>
+                    <li><i data-lucide="check-circle" class="text-green"></i> Code Duplication: <strong>&lt; 7%</strong></li>
+                    <li><i data-lucide="check-circle" class="text-green"></i> Lighthouse Score: <strong>99+ / 100</strong></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK EXPERIENCE TIMELINE -->
+    <section id="experience" class="section-padding">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-tag">
+            <i data-lucide="briefcase"></i>
+            <span>Track Record</span>
+          </div>
+          <h2 class="section-title">Professional <span class="text-gradient">Work Experience</span></h2>
+          <p class="section-description">
+            Hands-on engineering in high-stakes enterprise environments, delivering critical features for national platforms and mission-critical applications.
+          </p>
+        </div>
+
+        <div class="timeline-wrapper">
+          
+          <!-- Experience Item 1: Mid-Level Developer -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="marker-dot"></div>
+              <div class="marker-line"></div>
+            </div>
+            <div class="timeline-card glass-card">
+              <div class="timeline-header">
+                <div>
+                  <span class="role-badge">Current Role</span>
+                  <h3 class="role-title">Mid-Level Frontend Developer</h3>
+                  <h4 class="company-name">Obeikan Digital Solutions</h4>
+                </div>
+                <div class="period-badge">2025 – Present</div>
+              </div>
+
+              <p class="exp-summary">
+                Leading key frontend initiatives across high-traffic digital platforms, focusing on modularity, clean code, and cross-functional Agile execution.
+              </p>
+
+              <div class="exp-bullet-grid">
+                <div class="bullet-item">
+                  <i data-lucide="shield-check"></i>
+                  <span>Contributed to the development of a <strong>React-based module within the Tawakkalna platform</strong>, delivered through the <strong>Madar logistics system</strong>, delivering scalable and high-performance web features.</span>
+                </div>
+                <div class="bullet-item">
+                  <i data-lucide="git-merge"></i>
+                  <span>Architected the separation of the enterprise application into dedicated <strong>B2B and B2C portals</strong>, improving scalability and reducing feature coupling by <strong>40%</strong>.</span>
+                </div>
+                <div class="bullet-item">
+                  <i data-lucide="trending-up"></i>
+                  <span>Led the application upgrade from <strong>Angular 15 to the latest version</strong>, enhancing performance by <strong>~25%</strong> and strengthening application security.</span>
+                </div>
+                <div class="bullet-item">
+                  <i data-lucide="code"></i>
+                  <span>Refactored shared components into reusable modules, slashing code duplication by <strong>35%</strong> and cutting technical debt by <strong>~30%</strong>.</span>
+                </div>
+                <div class="bullet-item">
+                  <i data-lucide="users"></i>
+                  <span>Mentored junior developers through rigorous code reviews, architecture guidance, and knowledge sharing sessions.</span>
+                </div>
+              </div>
+
+              <div class="timeline-tags">
+                <span>React</span>
+                <span>Angular 15+</span>
+                <span>Tawakkalna</span>
+                <span>Madar Logistics</span>
+                <span>Clean Architecture</span>
+                <span>TypeScript</span>
+                <span>B2B / B2C Portals</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience Item 2: Junior Developer -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="marker-dot"></div>
+              <div class="marker-line"></div>
+            </div>
+            <div class="timeline-card glass-card">
+              <div class="timeline-header">
+                <div>
+                  <span class="role-badge past">Enterprise Growth</span>
+                  <h3 class="role-title">Junior Frontend Developer</h3>
+                  <h4 class="company-name">Obeikan Digital Solutions &bull; Cairo, Egypt</h4>
+                </div>
+                <div class="period-badge">Jul 2023 – Jan 2025</div>
+              </div>
+
+              <p class="exp-summary">
+                Engineered core user-facing features for <strong>Madar</strong>, the premier enterprise logistics platform, ensuring a seamless, scalable, and resilient experience.
+              </p>
+
+              <div class="exp-bullet-grid">
+                <div class="bullet-item">
+                  <i data-lucide="layers"></i>
+                  <span>Developed and maintained scalable Angular modules using <strong>Angular, RxJS, NgRx, TypeScript, Angular Material, and SCSS</strong>.</span>
+                </div>
+                <div class="bullet-item">
+                  <i data-lucide="zap"></i>
+                  <span>Reduced bundle size by <strong>30%</strong> and improved initial application load time by <strong>40%</strong> through lazy-loading and component tree tuning.</span>
+                </div>
+                <div class="bullet-item">
+                  <i data-lucide="cpu"></i>
+                  <span>Optimized overall application performance and improved responsiveness through reactive stream paradigms.</span>
+                </div>
+              </div>
+
+              <div class="timeline-tags">
+                <span>Angular</span>
+                <span>RxJS</span>
+                <span>NgRx</span>
+                <span>TypeScript</span>
+                <span>SCSS</span>
+                <span>Angular Material</span>
+                <span>Bootstrap</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECTS & CASE STUDIES -->
+    <section id="projects" class="section-padding">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-tag">
+            <i data-lucide="layers"></i>
+            <span>Engineering Showcase</span>
+          </div>
+          <h2 class="section-title">Featured Enterprise & <span class="text-gradient">Production Projects</span></h2>
+          <p class="section-description">
+            A selection of complex systems, web applications, and architectures built with precision, scalability, and modern standards.
+          </p>
+        </div>
+
+        <!-- Project Filter Buttons -->
+        <div class="project-filter-bar">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="enterprise">Enterprise Systems</button>
+          <button class="filter-btn" data-filter="angular">Angular & RxJS</button>
+          <button class="filter-btn" data-filter="react">React & Next.js</button>
+          <button class="filter-btn" data-filter="fullstack">Full-Stack & APIs</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid" id="projects-container">
+          <!-- Dynamic Project Cards rendered via JS from projects-data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS GALAXY & INTERACTIVE 3D ORBIT -->
+    <section id="skills" class="section-padding">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-tag">
+            <i data-lucide="code-2"></i>
+            <span>Technical Repertoire</span>
+          </div>
+          <h2 class="section-title">Engineered with <span class="text-gradient">Modern Technologies</span></h2>
+          <p class="section-description">
+            Deep technical expertise across the modern frontend ecosystem, reactive programming, architectural paradigms, and full-stack integration.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Category 1: Frontend Ecosystem -->
+          <div class="glass-card skill-card">
+            <div class="skill-category-header">
+              <div class="skill-cat-icon"><i data-lucide="layout"></i></div>
+              <div>
+                <h3>Frontend Ecosystem</h3>
+                <p>Core Frameworks & Reactive UI</p>
+              </div>
+            </div>
+            <div class="skill-items-container">
+              <div class="skill-pill"><i data-lucide="check"></i> Angular (15+)</div>
+              <div class="skill-pill"><i data-lucide="check"></i> React.js</div>
+              <div class="skill-pill"><i data-lucide="check"></i> Next.js (SSR / ISR)</div>
+              <div class="skill-pill"><i data-lucide="check"></i> TypeScript / ES6+</div>
+              <div class="skill-pill"><i data-lucide="check"></i> Three.js / WebGL</div>
+              <div class="skill-pill"><i data-lucide="check"></i> RxJS / NgRx</div>
+              <div class="skill-pill"><i data-lucide="check"></i> HTML5 & Semantic Web</div>
+              <div class="skill-pill"><i data-lucide="check"></i> CSS3 / SCSS / PostCSS</div>
+              <div class="skill-pill"><i data-lucide="check"></i> Tailwind CSS</div>
+              <div class="skill-pill"><i data-lucide="check"></i> Bootstrap / Angular Material</div>
+            </div>
+          </div>
+
+          <!-- Category 2: Backend & Integration -->
+          <div class="glass-card skill-card">
+            <div class="skill-category-header">
+              <div class="skill-cat-icon"><i data-lucide="server"></i></div>
+              <div>
+                <h3>Backend & APIs</h3>
+                <p>Full-Stack Bridge & Integration</p>
+              </div>
+            </div>
+            <div class="skill-items-container">
+              <div class="skill-pill"><i data-lucide="check"></i> Node.js</div>
+              <div class="skill-pill"><i data-lucide="check"></i> Express.js</div>
+              <div class="skill-pill"><i data-lucide="check"></i> RESTful APIs</div>
+              <div class="skill-pill"><i data-lucide="check"></i> JWT Authentication</div>
+              <div class="skill-pill"><i data-lucide="check"></i> MongoDB / Mongoose</div>
+              <div class="skill-pill"><i data-lucide="check"></i> MySQL</div>
+              <div class="skill-pill"><i data-lucide="check"></i> Python & Django (ITI)</div>
+              <div class="skill-pill"><i data-lucide="check"></i> MEAN / MERN Stacks</div>
+            </div>
+          </div>
+
+          <!-- Category 3: Architecture & Engineering Standards -->
+          <div class="glass-card skill-card">
+            <div class="skill-category-header">
+              <div class="skill-cat-icon"><i data-lucide="shield"></i></div>
+              <div>
+                <h3>Engineering Standards</h3>
+                <p>Scalability, Quality & Architecture</p>
+              </div>
+            </div>
+            <div class="skill-items-container">
+              <div class="skill-pill"><i data-lucide="check"></i> Clean Architecture</div>
+              <div class="skill-pill"><i data-lucide="check"></i> SOLID Principles</div>
+              <div class="skill-pill"><i data-lucide="check"></i> Design Patterns</div>
+              <div class="skill-pill"><i data-lucide="check"></i> Data Structures & Algorithms</div>
+              <div class="skill-pill"><i data-lucide="check"></i> WCAG Accessibility</div>
+              <div class="skill-pill"><i data-lucide="check"></i> Performance Optimization</div>
+              <div class="skill-pill"><i data-lucide="check"></i> Code Reviews & Mentorship</div>
+              <div class="skill-pill"><i data-lucide="check"></i> Agile / Scrum Sprints</div>
+            </div>
+          </div>
+
+          <!-- Category 4: Tooling & DevOps -->
+          <div class="glass-card skill-card">
+            <div class="skill-category-header">
+              <div class="skill-cat-icon"><i data-lucide="cpu"></i></div>
+              <div>
+                <h3>DevOps & Tooling</h3>
+                <p>Build Systems & Automation</p>
+              </div>
+            </div>
+            <div class="skill-items-container">
+              <div class="skill-pill"><i data-lucide="check"></i> Git & GitHub</div>
+              <div class="skill-pill"><i data-lucide="check"></i> Webpack & Vite</div>
+              <div class="skill-pill"><i data-lucide="check"></i> Docker Basics</div>
+              <div class="skill-pill"><i data-lucide="check"></i> AWS & Cloud Services</div>
+              <div class="skill-pill"><i data-lucide="check"></i> Azure DevOps</div>
+              <div class="skill-pill"><i data-lucide="check"></i> CI/CD Pipelines</div>
+              <div class="skill-pill"><i data-lucide="check"></i> Postman / API Testing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION & CERTIFICATIONS -->
+    <section id="education" class="section-padding">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-tag">
+            <i data-lucide="graduation-cap"></i>
+            <span>Academic Background</span>
+          </div>
+          <h2 class="section-title">Education & <span class="text-gradient">Certifications</span></h2>
+        </div>
+
+        <div class="edu-grid">
+          <!-- ITI Diploma -->
+          <div class="glass-card edu-card highlight-glow">
+            <div class="edu-icon-badge"><i data-lucide="award"></i></div>
+            <span class="edu-year">Oct 2022 – Jun 2023 &bull; Cairo, Egypt</span>
+            <h3>9-Month Professional Diploma (OSAD Track)</h3>
+            <h4>Information Technology Institute (ITI) - New Capital Branch</h4>
+            <p>
+              Intensive, highly competitive software engineering program. Developed responsive web applications using JavaScript, MEAN & MERN Stacks, Python/Django, games, and enterprise CRUD architectures.
+            </p>
+          </div>
+
+          <!-- Bachelor Degree -->
+          <div class="glass-card edu-card">
+            <div class="edu-icon-badge"><i data-lucide="book-open"></i></div>
+            <span class="edu-year">Oct 2016 – Jul 2020 &bull; Giza, Egypt</span>
+            <h3>Bachelor of Agriculture Engineering</h3>
+            <h4>Faculty of Agriculture, Cairo University</h4>
+            <p>
+              Graduated with a Good Cumulative Grade. Pioneered graduation engineering project: <em>"Generate Electricity from Footsteps"</em> (Piezoelectric energy harvesting).
+            </p>
+          </div>
+
+          <!-- CS50 & Additional Diplomas -->
+          <div class="glass-card edu-card">
+            <div class="edu-icon-badge"><i data-lucide="check-circle-2"></i></div>
+            <span class="edu-year">Honors & Continued Learning</span>
+            <h3>Professional Courses & Certifications</h3>
+            <ul class="cert-list">
+              <li><strong>CS50: Introduction to Computer Science</strong> &bull; Harvard University (Aug 2021)</li>
+              <li><strong>Full-Stack Diploma</strong> &bull; IT-Share (Jun 2022 – Dec 2022)</li>
+              <li><strong>Full Stack Diploma</strong> &bull; R.M.S Company (Dec 2019 – May 2020)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT & HIRE ME SECTION -->
+    <section id="contact" class="section-padding">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <div class="section-tag center-tag">
+            <i data-lucide="send"></i>
+            <span>Get in Touch</span>
+          </div>
+          <h2 class="section-title">Let's Build Something <span class="text-gradient">Extraordinary Together</span></h2>
+          <p class="section-description mx-auto">
+            Whether you have an ambitious enterprise project, a high-scale frontend architecture to build, or a full-time role—my inbox is always open.
+          </p>
+        </div>
+
+        <div class="contact-wrapper glass-card">
+          <!-- Direct Contact Channels -->
+          <div class="contact-info-panel">
+            <h3>Direct Channels</h3>
+            <p>Feel free to reach out via email, phone, WhatsApp, or connect on social platforms.</p>
+
+            <div class="contact-cards-list">
+              <!-- Email -->
+              <a href="mailto:ali.sdarwish97@gmail.com" class="contact-item" data-sound="hover">
+                <div class="contact-icon"><i data-lucide="mail"></i></div>
+                <div class="contact-detail">
+                  <span class="contact-type">Email</span>
+                  <span class="contact-val">ali.sdarwish97@gmail.com</span>
+                </div>
+                <button class="btn-copy-mini" data-copy="ali.sdarwish97@gmail.com" title="Copy Email">
+                  <i data-lucide="copy"></i>
+                </button>
+              </a>
+
+              <!-- Phone / WhatsApp -->
+              <a href="https://wa.me/201126108002" target="_blank" rel="noopener noreferrer" class="contact-item" data-sound="hover">
+                <div class="contact-icon"><i data-lucide="phone"></i></div>
+                <div class="contact-detail">
+                  <span class="contact-type">Phone & WhatsApp</span>
+                  <span class="contact-val">01126108002 (+20 112 610 8002)</span>
+                </div>
+                <span class="badge-chip">WhatsApp Direct</span>
+              </a>
+
+              <!-- LinkedIn -->
+              <a href="https://linkedin.com/in/ali-sahmed" target="_blank" rel="noopener noreferrer" class="contact-item" data-sound="hover">
+                <div class="contact-icon"><i data-lucide="linkedin"></i></div>
+                <div class="contact-detail">
+                  <span class="contact-type">LinkedIn</span>
+                  <span class="contact-val">linkedin.com/in/ali-sahmed</span>
+                </div>
+                <i data-lucide="external-link" class="icon-ext"></i>
+              </a>
+
+              <!-- GitHub -->
+              <a href="https://github.com/alielzoghby" target="_blank" rel="noopener noreferrer" class="contact-item" data-sound="hover">
+                <div class="contact-icon"><i data-lucide="github"></i></div>
+                <div class="contact-detail">
+                  <span class="contact-type">GitHub</span>
+                  <span class="contact-val">github.com/alielzoghby</span>
+                </div>
+                <i data-lucide="external-link" class="icon-ext"></i>
+              </a>
+
+              <!-- Location -->
+              <div class="contact-item no-click">
+                <div class="contact-icon"><i data-lucide="map-pin"></i></div>
+                <div class="contact-detail">
+                  <span class="contact-type">Location & Availability</span>
+                  <span class="contact-val">Cairo, Egypt &bull; Open for Remote / Relocation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Message Form -->
+          <div class="contact-form-panel">
+            <form id="contact-form" class="contact-form">
+              <div class="form-group">
+                <label for="user-name">Your Name</label>
+                <input type="text" id="user-name" name="name" required placeholder="e.g. Sarah Jenkins">
+              </div>
+
+              <div class="form-group">
+                <label for="user-email">Your Email</label>
+                <input type="email" id="user-email" name="email" required placeholder="e.g. sarah@company.com">
+              </div>
+
+              <div class="form-group">
+                <label for="project-type">Project / Opportunity Type</label>
+                <select id="project-type" name="type">
+                  <option value="enterprise">Enterprise Web App / Frontend Architecture</option>
+                  <option value="angular-react">Angular / React / Next.js Development</option>
+                  <option value="3d-webgl">Three.js / 3D Interactive Experience</option>
+                  <option value="fulltime">Full-Time / Senior Frontend Role</option>
+                  <option value="consultancy">Consultancy & Code Audit</option>
+                  <option value="other">Other Inquiry</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="user-message">Message Details</label>
+                <textarea id="user-message" name="message" rows="4" required placeholder="Tell me about your project goals, timelines, or scope..."></textarea>
+              </div>
+
+              <button type="submit" id="submit-contact-btn" class="btn-submit-glow" data-sound="click">
+                <i data-lucide="send"></i>
+                <span>Send Message</span>
+              </button>
+
+              <div id="form-feedback" class="form-feedback hidden"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="#hero" class="brand-logo">
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-name">Ali</span>
+          <span class="logo-accent">.Darwish</span>
+          <span class="logo-slash">/&gt;</span>
+        </a>
+        <p>Frontend Engineer specialized in scalable, high-performance web applications, 3D WebGL architectures, and clean component systems.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#lab">Interactive Lab</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="footer-socials">
+        <h4>Connect</h4>
+        <div class="social-links-row">
+          <a href="https://github.com/alielzoghby" target="_blank" rel="noopener noreferrer" title="GitHub"><i data-lucide="github"></i></a>
+          <a href="https://linkedin.com/in/ali-sahmed" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i data-lucide="linkedin"></i></a>
+          <a href="mailto:ali.sdarwish97@gmail.com" title="Email"><i data-lucide="mail"></i></a>
+          <a href="https://wa.me/201126108002" target="_blank" rel="noopener noreferrer" title="WhatsApp"><i data-lucide="phone"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Ali Darwish. Crafted with Three.js, GSAP & Clean Architecture.</p>
+      <a href="#hero" class="back-to-top" title="Back to Top"><i data-lucide="chevron-up"></i> Top</a>
+    </div>
+  </footer>
+
+  <!-- MODAL: RESUME / CV VIEWER & DOWNLOAD -->
+  <div id="cv-modal" class="modal-overlay hidden">
+    <div class="modal-card glass-card">
+      <div class="modal-header">
+        <div class="modal-title-box">
+          <i data-lucide="file-text" class="text-cyan"></i>
+          <h3>Ali Darwish — Curriculum Vitae</h3>
+        </div>
+        <button id="close-cv-modal" class="btn-modal-close" aria-label="Close CV Modal">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <div class="modal-body cv-preview-content">
+        <!-- Interactive CV Summary Sheet -->
+        <div class="cv-sheet-preview">
+          <div class="cv-header-banner">
+            <div>
+              <h2>Ali Darwish</h2>
+              <p class="cv-sub">Frontend Engineer (Angular / React / Next.js)</p>
+              <p class="cv-contact-line">ali.sdarwish97@gmail.com &bull; 01126108002 &bull; Cairo, Egypt</p>
+            </div>
+            <div class="cv-badge-group">
+              <span class="cv-badge">3+ Yrs Exp</span>
+              <span class="cv-badge">ITI OSAD</span>
+            </div>
+          </div>
+
+          <div class="cv-section-block">
+            <h4><i data-lucide="briefcase"></i> Experience Summary</h4>
+            <p><strong>Obeikan Digital Solutions (Mid-Level Developer 2025–Present)</strong>: React Tawakkalna module (Madar logistics), B2B/B2C separation (-40% coupling), Angular 15+ upgrades (+25% speed), -30% technical debt.</p>
+            <p><strong>Obeikan Digital Solutions (Junior Developer 2023–2025)</strong>: Madar logistics features, bundle size reduced by 30%, initial load time improved by 40%.</p>
+          </div>
+
+          <div class="cv-section-block">
+            <h4><i data-lucide="layers"></i> Major Projects</h4>
+            <p>&bull; <strong>Point of Sale (POS) System</strong>: Invoicing, inventory, stock control, dashboard (Angular, Node.js, Express, MySQL, RxJS).</p>
+            <p>&bull; <strong>School Management System (Special Education)</strong>: WCAG compliance, student tracking, real-time reporting (Angular, Node.js, MongoDB).</p>
+            <p>&bull; <strong>RDIA Saudi Arabia Enterprise Platform</strong>: Internal enterprise architecture and workflows.</p>
+          </div>
+
+          <div class="cv-section-block">
+            <h4><i data-lucide="graduation-cap"></i> Education</h4>
+            <p>&bull; <strong>Information Technology Institute (ITI)</strong>: 9-Month Professional Diploma (OSAD Track, 2022-2023).</p>
+            <p>&bull; <strong>Cairo University</strong>: Bachelor of Agriculture Engineering (Graduation project: Generate Electricity from Footsteps).</p>
+            <p>&bull; <strong>CS50 Harvard</strong> &bull; Full-Stack Diplomas.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <a href="assets/Ali_Darwish_Frontend_Engineer_CV.pdf" download="Ali_Darwish_Frontend_Engineer_CV.pdf" id="download-cv-btn-modal" class="btn-primary-glow" data-sound="click">
+          <i data-lucide="download"></i>
+          <span>Download Official CV (PDF)</span>
+        </a>
+        <button id="copy-email-cv-modal" class="btn-outline-glow" data-sound="click">
+          <i data-lucide="mail"></i>
+          <span>Copy Email Address</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PROJECT CASE STUDY DETAIL -->
+  <div id="project-modal" class="modal-overlay hidden">
+    <div class="modal-card glass-card project-detail-modal">
+      <button id="close-project-modal" class="btn-modal-close" aria-label="Close Project Modal">
+        <i data-lucide="x"></i>
+      </button>
+      <div id="project-modal-body" class="project-modal-body">
+        <!-- Dynamic Content Injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/sound-effects.js"></script>
+  <script src="js/projects-data.js"></script>
+  <script src="js/three-scene.js"></script>
+  <script src="js/interactive-lab.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

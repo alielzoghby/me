@@ -1,0 +1,131 @@
+/* ==========================================================================
+   RESPONSIVE.CSS - Media Queries for Mobile, Tablets & Ultra-wide screens
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 3.2rem;
+  }
+  
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .edu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rxjs-playground-grid,
+  .pos-demo-grid,
+  .shader-lab-grid,
+  .benchmark-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bench-arrow-center {
+    transform: rotate(90deg);
+    margin: 10px 0;
+  }
+
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+    padding: 28px;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-header {
+    padding: 14px 18px;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: rgba(6, 9, 17, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 24px;
+    gap: 18px;
+    border-bottom: 1px solid var(--border-subtle);
+    transform: translateY(-120%);
+    transition: transform var(--transition-smooth);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .nav-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-greeting {
+    font-size: 1.6rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .metrics-hud-card {
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    align-items: flex-start;
+  }
+
+  .hud-divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .key-traits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-item {
+    grid-template-columns: 32px 1fr;
+    gap: 14px;
+  }
+
+  .pos-items-list {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  /* Disable custom cursor on touch devices for smoother performance */
+  .custom-cursor, .cursor-follower {
+    display: none !important;
+  }
+}
